@@ -52,12 +52,25 @@ def create_map(data, q):
         ).add_to(m)
 
     if q == 'terrain':
+        # Display coordinates in top right corner of map when hovering over terrain
         MousePosition(
             position='topright',
             separator=' | ',
             prefix='Coordinates:',
             num_digits=3,
         ).add_to(m)
+
+    # Add icon for Japan cycling
+    icon_jp = folium.Icon(
+        color='black',
+        icon='bicycle',
+        prefix='fa'
+    )
+    folium.Marker(
+        location=[35.68, 139.76],  # coordinates of Tokyo
+        popup=f'<span style="font-size: 16px"><a href="/japan">Japan</a></span>',
+        icon=icon_jp
+    ).add_to(m)
 
     Fullscreen().add_to(m)  # full-screen option
     return m.get_root().render()
@@ -72,5 +85,4 @@ def get_coordinates(city):
     }
     response = requests.get(base_url, params=params, headers=HEADERS)
     data = response.json()
-    if data:
-        return {'Latitude': float(data[0]['lat']), 'Longitude': float(data[0]['lon'])}
+    return {'Latitude': float(data[0]['lat']), 'Longitude': float(data[0]['lon'])} if data else None

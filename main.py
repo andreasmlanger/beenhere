@@ -5,6 +5,7 @@ Folium TileLayers: http://maps.stamen.com
 FastAPI Tutorial: https://fastapi.tiangolo.com/tutorial/
 Add city: /add/city
 Delete city: /delete/city
+Change tiles: [SPACE] key
 """
 
 from fastapi import FastAPI
