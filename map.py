@@ -1,6 +1,7 @@
 import folium
 from folium.plugins import Fullscreen, MousePosition
 import requests
+from config import STADIA_API_KEY
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
@@ -13,14 +14,16 @@ HEADERS = {
     'DNT': '1',
 }
 
-
 def create_map(data, q):
     style = 'watercolor' if q != 'terrain' else q
     suffix = '' if q != 'terrain' else '{r}'
     f = folium.Figure()
     m = folium.Map(zoom_control=False, location=[40, 0], zoom_start=3).add_to(f)
-    folium.TileLayer('https://tiles.stadiamaps.com/tiles/stamen_' + style + '/{z}/{x}/{y}' + suffix + '.jpg',
-                     attr='©Fuchs').add_to(m)
+
+    # Use Stadiamaps Terrain tile layer
+    tile_layer_url = 'https://tiles.stadiamaps.com/tiles/stamen_' + style + '/{z}/{x}/{y}' + suffix + '.jpg?api_key=' + STADIA_API_KEY
+    tile_layer = folium.TileLayer(tile_layer_url, attr='©Fuchs')
+    tile_layer.add_to(m)
 
     # Add extra HTML
     extra_html = '''

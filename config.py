@@ -15,3 +15,5 @@ TABLE_NAME = config.get('AIRTABLE_TABLE_NAME')
 TOKEN = config.get('AIRTABLE_TOKEN')
 
 AIRTABLE = Airtable(BASE_ID, TABLE_NAME, TOKEN)
+
+STADIA_API_KEY = config.get('STADIA_API_KEY')  # https://client.stadiamaps.com/dashboard/#/property/15531/
