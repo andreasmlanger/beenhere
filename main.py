@@ -1,7 +1,7 @@
 """
 Development: uvicorn main:app --reload
 Production: uvicorn main:app --host 0.0.0.0 --port 10000
-Folium TileLayers: http://maps.stamen.com
+Folium TileLayers: https://maps.stamen.com
 FastAPI Tutorial: https://fastapi.tiangolo.com/tutorial/
 Add city: /add/city
 Delete city: /delete/city
